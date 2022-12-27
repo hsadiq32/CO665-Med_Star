@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Med_Star.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Med_Star.Pages
 {
@@ -12,9 +14,8 @@ namespace Med_Star.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-
         }
     }
 }
