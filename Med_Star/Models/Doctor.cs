@@ -6,6 +6,7 @@
         public string Name { get; set; }
         public string Specialty { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
+        public MedStarBranch MedStarBranch { get; set; }
 
         public ICollection<Appointment> GetAppointments()
         {
