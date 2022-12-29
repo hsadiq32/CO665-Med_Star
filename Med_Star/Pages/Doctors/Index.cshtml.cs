@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Med_Star.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Med_Star.Data;
-using Med_Star.Models;
 
 namespace Med_Star.Pages.Doctors
 {
@@ -19,13 +13,16 @@ namespace Med_Star.Pages.Doctors
             _context = context;
         }
 
-        public IList<Doctor> Doctor { get;set; } = default!;
+        public IList<Doctor> Doctor { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
             if (_context.Doctor != null)
             {
-                Doctor = await _context.Doctor.ToListAsync();
+                Doctor = await _context.Doctor
+                    .Include(d => d.Person)
+                    .ToListAsync();
+
             }
         }
     }

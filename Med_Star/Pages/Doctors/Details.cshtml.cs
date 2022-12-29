@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Med_Star.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Med_Star.Data;
-using Med_Star.Models;
 
 namespace Med_Star.Pages.Doctors
 {
@@ -19,7 +14,7 @@ namespace Med_Star.Pages.Doctors
             _context = context;
         }
 
-      public Doctor Doctor { get; set; }
+        public Doctor Doctor { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,12 +23,12 @@ namespace Med_Star.Pages.Doctors
                 return NotFound();
             }
 
-            var doctor = await _context.Doctor.FirstOrDefaultAsync(m => m.ID == id);
+            var doctor = await _context.Doctor.FirstOrDefaultAsync(m => m.DoctorId == id);
             if (doctor == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Doctor = doctor;
             }

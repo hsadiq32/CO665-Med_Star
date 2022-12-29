@@ -1,26 +1,36 @@
-﻿namespace Med_Star.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Med_Star.Models
 {
     public class Doctor
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Specialty { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
-        public MedStarBranch MedStarBranch { get; set; }
+        [Key]
+        public int DoctorId { get; set; }
+        public Person Person { get; set; }
+        public Specialty Specialty { get; set; }
+        public Branch Branch { get; set; }
 
-        public ICollection<Appointment> GetAppointments()
-        {
-            return Appointments;
-        }
+    }
 
-        public void AddAppointment(Appointment appointment)
-        {
-            // add the appointment to the Appointments list
-        }
-
-        public void RemoveAppointment(int id)
-        {
-            // remove the appointment with the specified id from the Appointments list
-        }
+    public enum Specialty
+    {
+        Pediatrics,
+        InternalMedicine,
+        Cardiology,
+        Orthopedics,
+        Dermatology,
+        Neurology,
+        Oncology,
+        Ophthalmology,
+        Gastroenterology,
+        Endocrinology,
+        Rheumatology,
+        Urology,
+        Anesthesiology,
+        Gynecology,
+        FamilyMedicine,
+        Psychiatry,
+        Rehabilitation,
+        Pulmonology
     }
 }

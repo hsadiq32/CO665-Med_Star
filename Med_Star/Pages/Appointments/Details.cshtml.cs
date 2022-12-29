@@ -28,7 +28,7 @@ namespace Med_Star.Pages.Appointments
                 return NotFound();
             }
 
-            var appointment = await _context.Appointment.FirstOrDefaultAsync(m => m.ID == id);
+            var appointment = await _context.Appointment.FirstOrDefaultAsync(m => m.AppointmentId == id);
             if (appointment == null)
             {
                 return NotFound();

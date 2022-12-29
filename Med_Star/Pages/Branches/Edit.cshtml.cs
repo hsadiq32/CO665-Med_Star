@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Med_Star.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Med_Star.Data;
-using Med_Star.Models;
 
 namespace Med_Star.Pages.Branches
 {
@@ -21,21 +15,21 @@ namespace Med_Star.Pages.Branches
         }
 
         [BindProperty]
-        public MedStarBranch MedStarBranch { get; set; } = default!;
+        public Branch Branch { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.MedStarBranch == null)
+            if (id == null || _context.Branch == null)
             {
                 return NotFound();
             }
 
-            var medstarbranch =  await _context.MedStarBranch.FirstOrDefaultAsync(m => m.ID == id);
-            if (medstarbranch == null)
+            var branch = await _context.Branch.FirstOrDefaultAsync(m => m.BranchId == id);
+            if (branch == null)
             {
                 return NotFound();
             }
-            MedStarBranch = medstarbranch;
+            Branch = branch;
             return Page();
         }
 
@@ -48,7 +42,7 @@ namespace Med_Star.Pages.Branches
                 return Page();
             }
 
-            _context.Attach(MedStarBranch).State = EntityState.Modified;
+            _context.Attach(Branch).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +50,7 @@ namespace Med_Star.Pages.Branches
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MedStarBranchExists(MedStarBranch.ID))
+                if (!BranchExists(Branch.BranchId))
                 {
                     return NotFound();
                 }
@@ -69,9 +63,9 @@ namespace Med_Star.Pages.Branches
             return RedirectToPage("./Index");
         }
 
-        private bool MedStarBranchExists(int id)
+        private bool BranchExists(int id)
         {
-          return _context.MedStarBranch.Any(e => e.ID == id);
+            return _context.Branch.Any(e => e.BranchId == id);
         }
     }
 }

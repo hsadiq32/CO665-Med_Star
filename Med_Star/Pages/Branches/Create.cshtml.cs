@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Med_Star.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Med_Star.Data;
-using Med_Star.Models;
 
 namespace Med_Star.Pages.Branches
 {
@@ -25,18 +19,18 @@ namespace Med_Star.Pages.Branches
         }
 
         [BindProperty]
-        public MedStarBranch MedStarBranch { get; set; }
-        
+        public Branch Branch { get; set; }
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.MedStarBranch.Add(MedStarBranch);
+            _context.Branch.Add(Branch);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

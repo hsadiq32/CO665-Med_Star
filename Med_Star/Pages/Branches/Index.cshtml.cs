@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Med_Star.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Med_Star.Data;
-using Med_Star.Models;
 
 namespace Med_Star.Pages.Branches
 {
@@ -19,13 +13,13 @@ namespace Med_Star.Pages.Branches
             _context = context;
         }
 
-        public IList<MedStarBranch> MedStarBranch { get;set; } = default!;
+        public IList<Branch> Branch { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.MedStarBranch != null)
+            if (_context.Branch != null)
             {
-                MedStarBranch = await _context.MedStarBranch.ToListAsync();
+                Branch = await _context.Branch.ToListAsync();
             }
         }
     }

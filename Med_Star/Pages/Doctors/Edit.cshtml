@@ -13,15 +13,10 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Doctor.ID" />
-            <div class="form-group">
-                <label asp-for="Doctor.Name" class="control-label"></label>
-                <input asp-for="Doctor.Name" class="form-control" />
-                <span asp-validation-for="Doctor.Name" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="Doctor.DoctorId" />
             <div class="form-group">
                 <label asp-for="Doctor.Specialty" class="control-label"></label>
-                <input asp-for="Doctor.Specialty" class="form-control" />
+                <select asp-for="Doctor.Specialty" class="form-control"></select>
                 <span asp-validation-for="Doctor.Specialty" class="text-danger"></span>
             </div>
             <div class="form-group">

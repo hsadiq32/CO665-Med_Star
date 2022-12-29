@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Med_Star.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Med_Star.Data;
-using Med_Star.Models;
 
 namespace Med_Star.Pages.Doctors
 {
@@ -30,7 +24,7 @@ namespace Med_Star.Pages.Doctors
                 return NotFound();
             }
 
-            var doctor =  await _context.Doctor.FirstOrDefaultAsync(m => m.ID == id);
+            var doctor = await _context.Doctor.FirstOrDefaultAsync(m => m.DoctorId == id);
             if (doctor == null)
             {
                 return NotFound();
@@ -56,7 +50,7 @@ namespace Med_Star.Pages.Doctors
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DoctorExists(Doctor.ID))
+                if (!DoctorExists(Doctor.DoctorId))
                 {
                     return NotFound();
                 }
@@ -71,7 +65,7 @@ namespace Med_Star.Pages.Doctors
 
         private bool DoctorExists(int id)
         {
-          return _context.Doctor.Any(e => e.ID == id);
+            return _context.Doctor.Any(e => e.DoctorId == id);
         }
     }
 }

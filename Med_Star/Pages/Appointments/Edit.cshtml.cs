@@ -30,7 +30,7 @@ namespace Med_Star.Pages.Appointments
                 return NotFound();
             }
 
-            var appointment =  await _context.Appointment.FirstOrDefaultAsync(m => m.ID == id);
+            var appointment =  await _context.Appointment.FirstOrDefaultAsync(m => m.AppointmentId == id);
             if (appointment == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace Med_Star.Pages.Appointments
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AppointmentExists(Appointment.ID))
+                if (!AppointmentExists(Appointment.AppointmentId))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace Med_Star.Pages.Appointments
 
         private bool AppointmentExists(int id)
         {
-          return _context.Appointment.Any(e => e.ID == id);
+          return _context.Appointment.Any(e => e.AppointmentId == id);
         }
     }
 }

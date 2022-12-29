@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Med_Star.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Med_Star.Data;
-using Med_Star.Models;
 
 namespace Med_Star.Pages.Branches
 {
@@ -20,40 +15,40 @@ namespace Med_Star.Pages.Branches
         }
 
         [BindProperty]
-      public MedStarBranch MedStarBranch { get; set; }
+        public Branch Branch { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.MedStarBranch == null)
+            if (id == null || _context.Branch == null)
             {
                 return NotFound();
             }
 
-            var medstarbranch = await _context.MedStarBranch.FirstOrDefaultAsync(m => m.ID == id);
+            var branch = await _context.Branch.FirstOrDefaultAsync(m => m.BranchId == id);
 
-            if (medstarbranch == null)
+            if (branch == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
-                MedStarBranch = medstarbranch;
+                Branch = branch;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.MedStarBranch == null)
+            if (id == null || _context.Branch == null)
             {
                 return NotFound();
             }
-            var medstarbranch = await _context.MedStarBranch.FindAsync(id);
+            var branch = await _context.Branch.FindAsync(id);
 
-            if (medstarbranch != null)
+            if (branch != null)
             {
-                MedStarBranch = medstarbranch;
-                _context.MedStarBranch.Remove(MedStarBranch);
+                Branch = branch;
+                _context.Branch.Remove(Branch);
                 await _context.SaveChangesAsync();
             }
 

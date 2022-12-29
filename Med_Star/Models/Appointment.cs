@@ -1,9 +1,13 @@
-﻿namespace Med_Star.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Med_Star.Models
 {
     public class Appointment
     {
-        public int ID { get; set; }
+        public int AppointmentId { get; set; }
         public DateTime Date { get; set; }
+        [NotMapped]
+        public TimeOnly Length { get; set; }
         public Doctor Doctor { get; set; }
         public Patient Patient { get; set; }
         public string Description { get; set; }
@@ -14,14 +18,14 @@
             return Date;
         }
 
-        public Doctor GetDoctor()
+        public string GetDoctor()
         {
-            return Doctor;
+            return Doctor.Person.FirstName;
         }
 
-        public Patient GetPatient()
+        public int GetPatient()
         {
-            return Patient;
+            return Patient.PatientId;
         }
 
         public string GetDescription()
@@ -62,9 +66,9 @@
 
     public enum AppointmentType
     {
-        CHECKUP,
-        SURGERY,
-        CONSULTATION
+        Checkup,
+        Surgery,
+        Consultation
     }
 }
 

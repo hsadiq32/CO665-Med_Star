@@ -1,23 +1,15 @@
-﻿namespace Med_Star.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Med_Star.Models
 {
     public class Patient
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
-        public ICollection<Appointment> GetAppointments()
-        {
-            return Appointments;
-        }
-
-        public void AddAppointment(Appointment appointment)
-        {
-            // add the appointment to the Appointments list
-        }
-
-        public void RemoveAppointment(int id)
-        {
-            // remove the appointment with the specified id from the Appointments list
-        }
+        [Key]
+        public int PatientId { get; set; }
+        public Person Person { get; set; }
+        public string County { get; set; }
+        public string Address { get; set; }
+        public string Postcode { get; set; }
     }
+
 }

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Med_Star.Data;
 using Med_Star.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Med_Star.Pages.Appointments
 {
@@ -20,20 +19,14 @@ namespace Med_Star.Pages.Appointments
             _context = context;
         }
 
-
-        public IList<Doctor> Doctor { get; set; } = default!;
-
-        public async Task OnGetAsync()
+        public IActionResult OnGet()
         {
-            if (_context.Doctor != null)
-            {
-                Doctor = await _context.Doctor.ToListAsync();
-            }
+            return Page();
         }
 
         [BindProperty]
         public Appointment Appointment { get; set; }
-
+        
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()

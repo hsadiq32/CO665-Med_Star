@@ -1,7 +1,4 @@
-﻿using Med_Star.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Med_Star.Pages
 {
@@ -16,6 +13,7 @@ namespace Med_Star.Pages
 
         public async Task OnGetAsync()
         {
+
         }
     }
 }
