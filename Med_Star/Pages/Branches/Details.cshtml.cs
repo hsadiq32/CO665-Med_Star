@@ -23,7 +23,10 @@ namespace Med_Star.Pages.Branches
                 return NotFound();
             }
 
-            var branch = await _context.Branch.FirstOrDefaultAsync(m => m.BranchId == id);
+            var branch = await _context.Branch
+                .Include(b => b.Doctors)
+                    .ThenInclude(d => d.Person)
+                .FirstOrDefaultAsync(m => m.BranchId == id);
             if (branch == null)
             {
                 return NotFound();

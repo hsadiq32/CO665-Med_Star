@@ -25,7 +25,12 @@ namespace Med_Star.Pages.Appointments
         {
             if (_context.Appointment != null)
             {
-                Appointment = await _context.Appointment.ToListAsync();
+                Appointment = await _context.Appointment
+                    .Include(b => b.Doctor)
+                        .ThenInclude(d => d.Person)
+                    .Include(c => c.Patient)
+                        .ThenInclude(e => e.Person)
+                    .ToListAsync();
             }
         }
     }

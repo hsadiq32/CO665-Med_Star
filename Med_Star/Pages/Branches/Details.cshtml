@@ -41,3 +41,62 @@
     <a asp-page="./Edit" asp-route-id="@Model.Branch?.BranchId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Specialty
+            </th>
+            <th>
+                Gender
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Branch.Doctors)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.Gender)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.DoctorId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.DoctorId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.DoctorId">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
